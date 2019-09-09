@@ -1,26 +1,29 @@
 package com.restapi.restapiforaws.services;
 
+import com.restapi.restapiforaws.entities.CarEntity;
+import com.restapi.restapiforaws.mappers.CarMapper;
 import com.restapi.restapiforaws.models.CarModel;
+import com.restapi.restapiforaws.repositories.CarRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class CarService {
 
-    public List<CarModel> getCars() {
-        List<CarModel> cars = new ArrayList<>();
-        CarModel car = new CarModel();
-        car.setMake("Lexus");;
-        car.setModel("ES300");
-        car.setYear(2002);
-        cars.add(car);
-        car = new CarModel();
-        car.setMake("Toyota");
-        car.setModel("Camry");
-        car.setYear(2009);
-        cars.add(car);
-        return cars;
+    private final CarMapper carMapper;
+
+    private final CarRepository carRepository;
+
+    @Autowired
+    public CarService(CarRepository carRepository, CarMapper carMapper) {
+        this.carRepository = carRepository;
+        this.carMapper = carMapper;
+    }
+
+    public List<CarModel> getAllCars() {
+        List<CarEntity> entities = this.carRepository.findAll();
+        return this.carMapper.entitiesToModels(entities);
     }
 }

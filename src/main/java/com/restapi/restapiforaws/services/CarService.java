@@ -41,4 +41,9 @@ public class CarService {
         List<CarEntity> entities = this.carRepository.findByYear(year);
         return this.carMapper.entitiesToModels(entities);
     }
+
+    public void insertCar(CarModel carModel) {
+        CarEntity carEntity = this.carMapper.modelToEntity(carModel);
+        this.carRepository.save(carEntity);
+    }
 }

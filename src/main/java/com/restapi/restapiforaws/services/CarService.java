@@ -26,4 +26,19 @@ public class CarService {
         List<CarEntity> entities = this.carRepository.findAll();
         return this.carMapper.entitiesToModels(entities);
     }
+
+    public List<CarModel> getCarsByMake(String make) {
+        List<CarEntity> entities = this.carRepository.findByMake(make);
+        return this.carMapper.entitiesToModels(entities);
+    }
+
+    public List<CarModel> getCarsByModel(String model) {
+        List<CarEntity> entities = this.carRepository.findByModel(model);
+        return this.carMapper.entitiesToModels(entities);
+    }
+
+    public List<CarModel> getCarsByYear(int year) {
+        List<CarEntity> entities = this.carRepository.findByYear(year);
+        return this.carMapper.entitiesToModels(entities);
+    }
 }

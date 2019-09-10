@@ -26,4 +26,12 @@ public class CarMapper {
         return carModels;
     }
 
+    public CarEntity modelToEntity(CarModel carModel) {
+        CarEntity car = new CarEntity();
+        car.setModel(carModel.getModel());
+        car.setMake(carModel.getMake());
+        car.setYear(carModel.getYear());
+        return car;
+    }
+
 }

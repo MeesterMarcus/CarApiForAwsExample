@@ -7,6 +7,7 @@ import com.restapi.restapiforaws.repositories.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -45,5 +46,10 @@ public class CarService {
     public void insertCar(CarModel carModel) {
         CarEntity carEntity = this.carMapper.modelToEntity(carModel);
         this.carRepository.save(carEntity);
+    }
+
+    @Transactional
+    public void deleteCar(CarModel carModel) {
+        this.carRepository.deleteCar(carModel.getMake(), carModel.getModel(), carModel.getYear());
     }
 }

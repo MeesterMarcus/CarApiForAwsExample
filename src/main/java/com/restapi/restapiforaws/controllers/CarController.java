@@ -41,4 +41,9 @@ public class CarController {
     public void insertCar(@RequestBody CarModel carModel) {
         this.carService.insertCar(carModel);
     }
+
+    @DeleteMapping("/deleteCar")
+    public void deleteCar(@RequestBody CarModel carModel) {
+        this.carService.deleteCar(carModel);
+    }
 }
